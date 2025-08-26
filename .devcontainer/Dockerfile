@@ -18,8 +18,9 @@ RUN apt-get install --no-install-recommends -y lsb-release wget software-propert
     sudo apt-get clean -y
 
 # Create Python virtual environment
-# RUN python3 -m venv /opt/venv
-# ENV PATH="/opt/venv/bin:$PATH"
+RUN python3 -m venv /opt/venv && \
+    chown -R vscode:vscode /opt/venv
+ENV PATH="/opt/venv/bin:$PATH" VIRTUAL_ENV="/opt/venv"
 RUN pip3 install --upgrade pip
 
 # Install CLANG if version is specified
